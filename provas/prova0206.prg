@@ -217,18 +217,21 @@ do while .t.
    @ 17,36 say "Trime:" + transform(nValorFinalVital*3  ,"@e 9999.99")
    @ 18,36 say "Anual:" + transform(nValorFinalVital*12 ,"@e 9999.99")
 
-   //Validade acabando o tempo entÆo go horse
-
-   cMes := alltrim(str(month(dDataCotacao)+1))
-   cAno := Alltrim(str(year(dDataCotacao)))
-   cData := "01/"nMes+"/"+cAno
-   dValidade := ctod(cData)-1
+   //Validade
+   if month(dDataCotacao) == 12
+      dValidade := (cTod("01/01"+str(year(dDataCotacao)+1)))-1
+   else
+      dValidade := (cTod("01/"+str(Month(dDataCotacao)+1)+"/"+str(year(dDataCotacao))))-1
+   endif
 
    setcolor("W/N")
-   @ 19,00 say "Cota‡Æo validka at‚ o dia: " + dToc(dValidade)
-   wait
+   @ 20,00 say "Cota‡Æo valida at‚ o dia: " + dToc(dValidade)
+   inkey(0)
 
-
+   nConfirm := alert("Deseja", {"Sair", "Repetir"})
+   if nConfirm == 2
+      loop
+   endif
 
 
 
